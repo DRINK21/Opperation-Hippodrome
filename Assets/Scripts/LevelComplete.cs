@@ -13,20 +13,20 @@ public class LevelComplete : MonoBehaviour
     {
         score = Score.totalScore;
         scoreText.text = score.ToString();
-        if(Score.level == 1)
+        switch (Score.level)
         {
-            highscoreText.text = Score.Level1Highscore.ToString();
+            case 1:
+                highscoreText.text = Score.Level1Highscore.ToString();
 
-        }
-        if (Score.level == 2)
-        {
-            highscoreText.text =  Score.Level2Highscore.ToString();
+                break;
+            case 2:
+                highscoreText.text = Score.Level2Highscore.ToString();
 
-        }
-        if (Score.level == 3)
-        {
-            highscoreText.text =  Score.Level3Highscore.ToString();
+                break;
+            case 3:
+                highscoreText.text = Score.Level3Highscore.ToString();
 
+                break;
         }
 
 

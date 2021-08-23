@@ -45,7 +45,7 @@ public class BirdBehaviour : MonoBehaviour
         {
             bossHealthBar.value = health;
             bossHealth = health;
-            
+
             //if (player != null)
             //{
             //
@@ -71,49 +71,49 @@ public class BirdBehaviour : MonoBehaviour
             //    }
             //}
             // Boss Shooting
-            if(Phases == 2)
+            switch (Phases)
             {
-                if (bossHealth < 71)
-                {
-                    phase1();
-                }
+                case 2:
+                    if (bossHealth < 71)
+                    {
+                        phase1();
+                    }
 
-                if (bossHealth < 51)
-                {
-                    phase2();
-                }
-            }
-            else if(Phases == 1)
-            {
-                if (bossHealth < 71)
-                {
-                    phase1();
-                }
-            }
-            else if (Phases == 0)
-            {
-                if (bossHealth < 71)
-                {
-                    phase2();
-                }
+                    if (bossHealth < 51)
+                    {
+                        phase2();
+                    }
+                    break;
+                case 1:
+                    if (bossHealth < 71)
+                    {
+                        phase1();
+                    }
+                    break;
+                case 0:
+                    if (bossHealth < 71)
+                    {
+                        phase2();
+                    }
+                    break;
             }
 
             if (health <= 0)
             {
                 //Instantiate(deathEffect, transform.position, Quaternion.identity);
-                if(Phases == 2)
+                switch (Phases)
                 {
-                    Score.BossKill = Score.BossKill + 500;
-                    EndLevel.SetActive(true);
-                    Score.LevelDone = true;
-                }
-                else if (Phases == 1)
-                {
-                    Score.BossKill = Score.BossKill + 300;
-                }
-                else if (Phases == 0)
-                {
-                    Score.BossKill = Score.BossKill + 300;
+                    case 2:
+                        Score.BossKill = Score.BossKill + 500;
+                        EndLevel.SetActive(true);
+                        Score.LevelDone = true;
+                        break;
+                    case 1:
+                        Score.BossKill = Score.BossKill + 300;
+                        break;
+                    case 0:
+                        Score.BossKill = Score.BossKill + 300;
+                        break;
                 }
                 Destroy(gameObject);
 

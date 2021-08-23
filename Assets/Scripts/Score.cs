@@ -54,24 +54,24 @@ public class Score : MonoBehaviour
         Level2Highscore = LoadGame.Level2Highscore;
         Level3Highscore = LoadGame.Level3Highscore;
         Level4Highscore = LoadGame.Level4Highscore;
-        if (sceneName == "Level 1")
+        switch (sceneName)
         {
-            level = 1;
-            HighscoreText.text = "Highscore: " + Level1Highscore.ToString();
-        }
-        else if (sceneName == "Level 2")
-        {
-            level = 2;
-            HighscoreText.text = "Highscore: " + Level2Highscore.ToString();
-        }else if (sceneName == "Level 3")
-        {
-            level = 3;
-            HighscoreText.text = "Highscore: " + Level3Highscore.ToString();
-        }
-        else if (sceneName == "Arena")
-        {
-            level = 4;
-            HighscoreText.text = "Highscore: " + Level3Highscore.ToString();
+            case "Level 1":
+                level = 1;
+                HighscoreText.text = "Highscore: " + Level1Highscore.ToString();
+                break;
+            case "Level 2":
+                level = 2;
+                HighscoreText.text = "Highscore: " + Level2Highscore.ToString();
+                break;
+            case "Level 3":
+                level = 3;
+                HighscoreText.text = "Highscore: " + Level3Highscore.ToString();
+                break;
+            case "Arena":
+                level = 4;
+                HighscoreText.text = "Highscore: " + Level3Highscore.ToString();
+                break;
         }
     }
 
@@ -89,7 +89,7 @@ public class Score : MonoBehaviour
                 countdown = true;
             }
         }
-        if(level1score > Level1Highscore)
+        if (level1score > Level1Highscore)
         {
             Level1Highscore = level1score;
             HighscoreText.text = "Highscore: " + Level1Highscore.ToString();
@@ -131,22 +131,15 @@ public class Score : MonoBehaviour
         
     }
 
-    void GetLevel()
+    long GetLevel()
     {
-        if (level == 1)
+        return level switch
         {
-            level1score = totalScore;
-        }
-        else if (level == 2)
-        {
-            level2score = totalScore;
-        }
-        else if (level == 3)
-        {
-            level3score = totalScore;
-        }else if (level == 4)
-        {
-            level4score = totalScore;
-        }
+            1 => level1score = totalScore,
+            2 => level2score = totalScore,
+            3 => level3score = totalScore,
+            4 => level4score = totalScore,
+            _ => 0
+        };
     }
 }
